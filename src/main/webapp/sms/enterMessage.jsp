@@ -66,15 +66,41 @@
 		}
 	}
 
-	function previewandsend() {
+	function previewandsendotp() {
 		var message = document.getElementById('inputMessage').value;
 		var r = confirm("Radhey Radhey " + message);
-		return r;
-	}
-	
-	function setMessage(txt){
+		
+		if(r == true){
+			var otp = Math.floor((Math.random() * 10000) + 1);
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', 'http://bulkpush.mytoday.com/BulkSms/SingleMsgApi?feedid=364413&username=9869422666&password=rkt@1401&To=9979485474&Text=Radhey Radhey '+otp, true);
+			xhr.send();
+
+			var i;
+			var validOTP = false;
+			for (i = 1; i <= 3; i++) { 
+				var inputotp = prompt("Please enter OTP : Attempt ("+ i +")", "OTP");
+				if(inputotp != otp){
+					alert('OTP is Not Valid...')
+				}else{
+					validOTP=true;
+					break;
+				}  
+			}
+		}
+		
+		if(validOTP == true){
+			return r;	
+		}else
+			{
+			alert('You have Entered Invalid OTP For Three Times...')
+			window.location.replace("../login/logout.jsp");
+			return false;
+			}
+		
 		
 	}
+	
 	
 	$(document).ready(function() {
 
@@ -107,8 +133,8 @@
 					<div class="card-body">
 						<h5 class="card-title text-center">Enter Message</h5>
 						<form class="form-signin" name="enterMessage"
-							action="processMessage.jsp" method="get"
-							onsubmit="return previewandsend();">
+							action="processMessage.jsp" method="post"
+							onsubmit="return previewandsendotp();">
 
 
 							<div class="form-label-group">
@@ -134,7 +160,7 @@
 							</div>
 							
 							<button class="btn btn-lg btn-primary btn-block text-uppercase"
-								type="submit">Preview & Send</button>
+								type="submit">Preview & Send OTP</button>
 							<hr class="my-4">
 
 						</form>

@@ -20,8 +20,7 @@
 <link href="../css/login.css" rel="stylesheet">
 
 
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+
 <title>processLogin</title>
 </head>
 <body bgcolor="white">
