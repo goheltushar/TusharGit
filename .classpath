@@ -23,8 +23,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/administrator/Downloads/json-rpc-1.0.jar"/>
-	<classpathentry kind="lib" path="/home/administrator/Downloads/json-lib-2.4-jdk15.jar"/>
-	<classpathentry kind="lib" path="/home/administrator/Downloads/json-taglib-0.4.1.jar"/>
+	<classpathentry kind="lib" path="/home/administrator/eclipse-workspace/sendsms-stjkms-gae/src/main/webapp/lib/javax.json-1.0.jar"/>
+	<classpathentry kind="lib" path="/home/administrator/Downloads/javax.json-1.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

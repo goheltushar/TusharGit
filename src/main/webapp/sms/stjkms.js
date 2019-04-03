@@ -1,4 +1,5 @@
-[
+
+var stjkms = { "contacts" : [
   {
     "Number": 9714484913,
     "Name": "Ajay",
@@ -749,4 +750,4 @@
     "Adjective": "Bhaiya",
     "Surname": "C/o Rawal kaka"
   }
-]
+] };

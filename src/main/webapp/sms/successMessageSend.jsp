@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,22 +14,29 @@
 	href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-<link href="css/login.css" rel="stylesheet">
+<link href="../css/main.css" rel="stylesheet">
+<meta charset="UTF-8">
+<title>successLogin</title>
 
+<script>
+	window.onload = function(){
+	   setTimeout(loadAfterTime, 5000)
+	};
 
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-<title>processLogin</title>
+	function loadAfterTime() { 
+		window.location.replace("../login/logout.jsp");
+	}
+</script>
+
 </head>
-<body bgcolor="white">
+<body>
 
-	<c:if
-		test="${param.email == 'goheltushar1401@gmail.com' && param.password == 'stjkms' }">
-		<c:set scope="session" var="stjkms-session" value="radheyrdhey" />
-		<jsp:forward page="successLogin.jsp" />
-	</c:if>
-
-	<jsp:forward page="failureLogin.jsp" />
-
+	<div class="alert alert-success" role="alert">
+		<button type="button" class="close" data-dismiss="alert"
+			aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<strong>Success!</strong> Message has been send Successfully !!! Soon You will be automatically Log Out!!!
+	</div>
 </body>
 </html>

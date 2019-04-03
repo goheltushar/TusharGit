@@ -37,12 +37,12 @@
 					<div class="card-body">
 						<h5 class="card-title text-center">Enter Message</h5>
 						<form class="form-signin" name="enterMessage"
-							action="processMessage.jsp" method="post"
+							action="processMessage.jsp" method="get"
 							onsubmit="return previewandsend();">
 
 
 							<div class="form-label-group">
-								<textarea type="text" name="message" id="inputMessage"
+								<textarea type="text" name="inputmessage" id="inputMessage"
 									class="form-control" required rows="5" autofocus="autofocus"></textarea>
 
 							</div>
