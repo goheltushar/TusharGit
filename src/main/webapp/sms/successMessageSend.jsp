@@ -36,7 +36,7 @@
 			aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
-		<strong>Success!</strong> Message has been send Successfully !!! Soon You will be automatically Log Out!!!
+		<strong>Success!</strong> Messages has been send Successfully !!! Soon You will be automatically Log Out!!!
 	</div>
 </body>
 </html>

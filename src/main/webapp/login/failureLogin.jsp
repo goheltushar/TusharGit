@@ -37,6 +37,7 @@
 			aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
+		
 		<strong>Failure!</strong> You have Entered Wrong Credentials !!! Soon, You will be redirected to Login Page.
 	</div>
 	

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.io.*,java.util.StringTokenizer"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+
 
 
 <!DOCTYPE html>
@@ -12,10 +12,9 @@
 
 
 <%
-		
-	    String previousPage = request.getHeader("referer");		
-		if(previousPage != null) {
-		InputStream is = new FileInputStream("sms/Contacts2.txt");
+	String previousPage = request.getHeader("referer");
+	if (previousPage != null) {
+		InputStream is = new FileInputStream("sms/Contacts.txt");
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
 		String str = "";
 		StringTokenizer st = null;
@@ -49,7 +48,8 @@
 	}
 %>
 <jsp:forward page="successMessageSend.jsp" />
-<%}
+<%
+	}
 %>
 <jsp:forward page="../login/logout.jsp" />
 </head>
