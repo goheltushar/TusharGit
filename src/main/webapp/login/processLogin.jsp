@@ -19,10 +19,22 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 <link href="../css/login.css" rel="stylesheet">
 
+<%
+	if (session.isNew()) {
+%>
+<script>
+	window.location.replace("../login/Login.jsp");
+</script>
+<%
+	}
+%>
 
 
 <title>processLogin</title>
 </head>
+
+
+
 <body bgcolor="white">
 
 	<c:if
@@ -30,7 +42,13 @@
 		<jsp:forward page="successLogin.jsp" />
 	</c:if>
 
+	<%
+		if (!session.isNew()) {
+	%>
 	<jsp:forward page="failureLogin.jsp" />
+	<%
+		}
+	%>
 
 </body>
 </html>

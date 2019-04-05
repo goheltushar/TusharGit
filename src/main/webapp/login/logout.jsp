@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:remove var="stjkms-session"/>
-	<%session.invalidate();%> <jsp:forward page="Login.html" />
+
+	<jsp:forward page="Login.jsp" />
 </body>
 </html>

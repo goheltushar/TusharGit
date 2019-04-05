@@ -19,28 +19,36 @@
 <title>successLogin</title>
 
 <script>
-	window.onload = function(){
-		   setTimeout(loadAfterTime, 5000)
-		};
+	window.onload = function() {
+		setTimeout(loadAfterTime, 5000)
+	};
 
-		function loadAfterTime() { 
-			window.location.replace("Login.html");
-		}
-	
+	function loadAfterTime() {
+		window.location.replace("Login.jsp");
+	}
 </script>
 
 </head>
 <body>
-
+	<%
+		if (session.isNew()) {
+	%>
+	<script>
+		window.location.replace("../login/Login.jsp");
+	</script>
+	<%
+		}
+	%>
 	<div class="alert alert-danger" role="alert">
 		<button type="button" class="close" data-dismiss="alert"
 			aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
-		
-		<strong>Failure!</strong> You have Entered Wrong Credentials !!! Soon, You will be redirected to Login Page.
+
+		<strong>Failure!</strong> You have Entered Wrong Credentials !!! Soon,
+		You will be redirected to Login Page.
 	</div>
-	
-	
+
+
 </body>
 </html>

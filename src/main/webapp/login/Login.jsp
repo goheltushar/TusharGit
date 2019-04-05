@@ -24,6 +24,7 @@
 session.invalidate(); 
 session = null;
 session = request.getSession(true);
+session.setMaxInactiveInterval(10000);
 %>
 <body>
 	<div class="container">

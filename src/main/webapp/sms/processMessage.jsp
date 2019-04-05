@@ -9,7 +9,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Process Message</title>
-
+<%
+	if (session.isNew()) {
+%>
+<script>
+	window.location.replace("../login/Login.jsp");
+</script>
+<%
+	}
+%>
 
 <%
 	String previousPage = request.getHeader("referer");
@@ -45,7 +53,7 @@
 </c:import>
 
 <%
-		}
+	}
 %>
 <jsp:forward page="successMessageSend.jsp" />
 <%

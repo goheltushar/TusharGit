@@ -19,24 +19,33 @@
 <title>successLogin</title>
 
 <script>
-	window.onload = function(){
-	   setTimeout(loadAfterTime, 5000)
+	window.onload = function() {
+		setTimeout(loadAfterTime, 5000)
 	};
 
-	function loadAfterTime() { 
+	function loadAfterTime() {
 		window.location.replace("../login/logout.jsp");
 	}
 </script>
 
 </head>
 <body>
-
+	<%
+		if (session.isNew()) {
+	%>
+	<script>
+		window.location.replace("../login/Login.jsp");
+	</script>
+	<%
+		}
+	%>
 	<div class="alert alert-success" role="alert">
 		<button type="button" class="close" data-dismiss="alert"
 			aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
-		<strong>Success!</strong> Messages has been send Successfully !!! Soon You will be automatically Log Out!!!
+		<strong>Success!</strong> Messages has been send Successfully !!! Soon
+		You will be automatically Log Out!!!
 	</div>
 </body>
 </html>
