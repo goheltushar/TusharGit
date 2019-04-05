@@ -27,7 +27,6 @@
 
 	<c:if
 		test="${param.email == 'goheltushar1401@gmail.com' && param.password == 'stjkms' }">
-		<c:set scope="session" var="stjkms-session" value="radheyrdhey" />
 		<jsp:forward page="successLogin.jsp" />
 	</c:if>
 

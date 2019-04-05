@@ -19,7 +19,6 @@
 <meta charset="UTF-8">
 
 <style type="text/css">
-
 .selectBox {
 	position: relative;
 }
@@ -69,63 +68,87 @@
 	function previewandsendotp() {
 		var message = document.getElementById('inputMessage').value;
 		var r = confirm("Radhey Radhey " + message);
-		
-		if(r == true){
+
+		if (r == true) {
 			var otp = Math.floor((Math.random() * 10000) + 1);
 			var xhr = new XMLHttpRequest();
-			xhr.open('GET', 'http://bulkpush.mytoday.com/BulkSms/SingleMsgApi?feedid=364413&username=9869422666&password=rkt@1401&To=9979485474&Text=Radhey Radhey '+otp, true);
+			xhr
+					.open(
+							'GET',
+							'http://bulkpush.mytoday.com/BulkSms/SingleMsgApi?feedid=364413&username=9869422666&password=rkt@1401&To=9979485474&Text=Radhey Radhey '
+									+ otp, true);
 			xhr.send();
 
 			var i;
 			var validOTP = false;
-			for (i = 1; i <= 3; i++) { 
-				var inputotp = prompt("Please enter OTP : Attempt ("+ i +")", "OTP");
-				if(inputotp != otp){
+			for (i = 1; i <= 3; i++) {
+				var inputotp = prompt("Please enter OTP : Attempt (" + i + ")",
+						"OTP");
+				if (inputotp != otp) {
 					alert('OTP is Not Valid...')
-				}else{
-					validOTP=true;
+				} else {
+					validOTP = true;
 					break;
-				}  
+				}
+			}
+
+			if (validOTP == true) {
+				return true;
+			} else {
+				alert('You have Entered Invalid OTP For Three Times...')
+				window.location.replace("../login/logout.jsp");
+				return false;
 			}
 		}
-		
-		if(validOTP == true){
-			return r;	
-		}else
-			{
-			alert('You have Entered Invalid OTP For Three Times...')
-			window.location.replace("../login/logout.jsp");
-			return false;
-			}
-		
-		
+		return false;
+
 	}
-	
-	
-	$(document).ready(function() {
 
-		  $('#one').change(function() {
-			  $("#inputMessage").val('Aaj Thursday Ka Regular Kirtan Hasmukhbhai Ke Ghar Sham 7pm se 9pm tak hoga.');
-		  });
-		
-		  $('#two').change(function() {
-			  $("#inputMessage").val('Kal Sunday Ka Regular Kirtan Meera Mandir Me Subah 9am se 12:15pm tak hoga.');
-		  });
-		  
-		  $('#three').change(function() {
-			  $("#inputMessage").val('Aaj Ekadashi Ka Kirtan Anuragbhai Ke Ghar Sham 7pm se 10pm tak hoga.');
-		  });
+	$(document)
+			.ready(
+					function() {
 
-		  
-	});
-	
-	
+						$('#one')
+								.change(
+										function() {
+											$("#inputMessage")
+													.val(
+															'Aaj Thursday Ka Regular Kirtan Hasmukhbhai Ke Ghar Sham 7pm se 9pm tak hoga.');
+										});
+
+						$('#two')
+								.change(
+										function() {
+											$("#inputMessage")
+													.val(
+															'Kal Sunday Ka Regular Kirtan Meera Mandir Me Subah 9am se 12:15pm tak hoga.');
+										});
+
+						$('#three')
+								.change(
+										function() {
+											$("#inputMessage")
+													.val(
+															'Aaj Ekadashi Ka Kirtan Anuragbhai Ke Ghar Sham 7pm se 10pm tak hoga.');
+										});
+
+					});
 </script>
 
 <title>SendSMS-STJKMS Login</title>
 </head>
+
 <body>
-<body>
+
+<%
+if(session.isNew()){
+%>
+<script>
+window.location.replace("../login/Login.html");
+</script>
+<%} %>
+
+
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -152,13 +175,14 @@
 										<div class="overSelect"></div>
 									</div>
 									<div id="checkboxes">
-										<label for="one"> <input type="checkbox" id="one" />Thursday</label>
-										<label for="two"> <input type="checkbox" id="two" />Sunday</label>
-										<label for="three"> <input type="checkbox" id="three" />Ekadashi</label>
+										<label for="one"> <input type="checkbox" id="one" />Thursday
+										</label> <label for="two"> <input type="checkbox" id="two" />Sunday
+										</label> <label for="three"> <input type="checkbox" id="three" />Ekadashi
+										</label>
 									</div>
 								</div>
 							</div>
-							
+
 							<button class="btn btn-lg btn-primary btn-block text-uppercase"
 								type="submit">Preview & Send OTP</button>
 							<hr class="my-4">
@@ -171,13 +195,5 @@
 
 
 	</div>
-
-
-
-</body>
-
-
-
-
 </body>
 </html>
