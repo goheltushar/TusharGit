@@ -24,7 +24,7 @@
 	};
 
 	function loadAfterTime() {
-		window.location.replace("../sms/enterMessage.jsp");
+		window.location.replace("../login/main.jsp");
 	}
 </script>
 

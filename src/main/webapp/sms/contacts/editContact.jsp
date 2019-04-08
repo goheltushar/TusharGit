@@ -18,15 +18,6 @@
 <link href="../../css/login.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>SendSMS-STJKMS Login</title>
-
-<script type="text/javascript">
-
-function home() {
-	window.location.replace("../../login/main.jsp");
-}
-
-</script>
-
 </head>
 
 
@@ -37,18 +28,18 @@ function home() {
 				<div class="card card-signin my-5">
 					<div class="card-body">
 						<h5 class="card-title text-center">Insert New Contact</h5>
-						<form class="form-signin" name="insertContact" action="processInsertContact.jsp"
+						<form class="form-signin" name="insertContact" action="processEditContact.jsp"
 							method="post">
 							
 							<div class="form-label-group">
 								<input type="text" name="name" id="inputName"
 									class="form-control" placeholder="Enter Name" required
-									autofocus> <label for="inputName">Name :</label>
+									autofocus value="${param.name}"> <label for="inputName">Name :</label>
 							</div>
 
 							<div class="form-label-group">
 								<input type="text" name="adjective" id="inputAdjective"
-									class="form-control" placeholder="Adjective" required> <label
+									class="form-control" placeholder="Adjective" required value="${param.adjective}"> <label
 									for="inputPassword">Adjective :</label>
 							</div>
 
@@ -56,22 +47,18 @@ function home() {
 							<div class="form-label-group">
 								<input type="text" name="surname" id="inputSurname"
 									class="form-control" placeholder="Enter Surname" required
-									autofocus> <label for="inputName">Surname :</label>
+									autofocus value="${param.surname}"> <label for="inputName">Surname :</label>
 							</div>
 
 							<div class="form-label-group">
 								<input type="number" name="number" id="inputNumber"
-									class="form-control" placeholder="Mobile" required> <label
+									class="form-control" placeholder="Mobile" required value="${param.number}"> <label
 									for="inputPassword">Mobile :</label>
 							</div>
 							
 							<button class="btn btn-lg btn-primary btn-block text-uppercase"
-								type="submit">Insert Contact</button>
+								type="submit">Edit Contact</button>
 							<hr class="my-4">
-							
-							<button class="btn btn-lg btn-info btn-block text-uppercase"
-								type="submit" onclick="home()">Home</button>
-							
 						</form>
 					</div>
 				</div>

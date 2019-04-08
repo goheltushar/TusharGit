@@ -188,8 +188,10 @@
 							<button class="btn btn-lg btn-primary btn-block text-uppercase"
 								type="submit">Preview & Send OTP</button>
 							<hr class="my-4">
-
+							<button class="btn btn-lg btn-info btn-block text-uppercase"
+								onclick="window.location.replace('../login/main.jsp')">Home</button>
 						</form>
+
 					</div>
 				</div>
 			</div>

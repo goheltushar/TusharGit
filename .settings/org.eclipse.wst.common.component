@@ -5,9 +5,6 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
                 
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-        <dependent-module archiveName="mysql-connector.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/tushar/Downloads/mysql-connector.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
                 
         <property name="context-root" value="sendsms-stjkms-gae"/>
                 
