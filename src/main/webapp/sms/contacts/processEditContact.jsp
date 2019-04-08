@@ -21,9 +21,9 @@
 <title>SendSMS-STJKMS processEditContact</title>
 </head>
 
-<sql:setDataSource var="con" driver="com.mysql.jdbc.GoogleDriver"
-	url="jdbc:google:mysql://sendsms-stjkms:us-central1:sendsms-stjkms-sql/stjkms"
-	user="root" password="Radhey@2910" />
+<c:if test="${checked != 'Yes' }">
+	<jsp:forward page="../../login/login.html" />
+</c:if>
 
 
 <c:catch var="catchException">
@@ -39,15 +39,13 @@
 
 <c:if test="${catchException != null}">
 	<p>
-		The exception is : ${catchException} <br /> 
-		There is an exception: ${catchException.message}
+		The exception is : ${catchException} <br /> There is an exception:
+		${catchException.message}
 	</p>
 </c:if>
 
 <c:if test="${catchException == null}">
-	<p>
-		Record Edited Successfully.....
-	</p>
+	<p>Record Edited Successfully.....</p>
 </c:if>
 
 

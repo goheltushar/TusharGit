@@ -10,6 +10,7 @@
 <body>
 
 <%
+session.removeAttribute("checked");
 session.invalidate();
 session = null;
 %>

@@ -19,12 +19,11 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 <link href="../css/login.css" rel="stylesheet">
 
-<%
-session = request.getSession(true);
-%>
+
 
 <title>processLogin</title>
 </head>
+
 
 
 
@@ -32,6 +31,7 @@ session = request.getSession(true);
 
 	<c:if
 		test="${param.email == 'goheltushar1401@gmail.com' && param.password == 'stjkms' }">
+		<c:set var="checked" value="Yes" scope="session" /> 
 		<jsp:forward page="successLogin.jsp" />
 	</c:if>
 

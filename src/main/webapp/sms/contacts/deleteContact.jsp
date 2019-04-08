@@ -20,11 +20,9 @@
 <meta charset="UTF-8">
 <title>SendSMS-STJKMS processEditContact</title>
 </head>
-
-<sql:setDataSource var="con" driver="com.mysql.jdbc.GoogleDriver"
-	url="jdbc:google:mysql://sendsms-stjkms:us-central1:sendsms-stjkms-sql/stjkms"
-	user="root" password="Radhey@2910" />
-
+<c:if test="${checked != 'Yes' }">
+	<jsp:forward page="../../login/login.html" />
+</c:if>
 
 <c:catch var="catchException">
 	<sql:update dataSource="${con}"

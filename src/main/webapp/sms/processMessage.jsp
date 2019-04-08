@@ -10,15 +10,16 @@
 <meta charset="UTF-8">
 <title>Process Message</title>
 
+<c:if test="${checked != 'Yes' }">
+	<jsp:forward page="../login/login.html" />
+</c:if>
 
 <%
 	String previousPage = request.getHeader("referer");
 	if (previousPage != null) {
 %>
 
-<sql:setDataSource var="con" driver="com.mysql.jdbc.GoogleDriver"
-	url="jdbc:google:mysql://sendsms-stjkms:us-central1:sendsms-stjkms-sql/stjkms"
-	user="root" password="Radhey@2910" />
+
 
 <sql:query var="result" dataSource="${con}"
 	sql="select * from contacts_test order by Name" />

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
 <html>
 <head>
@@ -35,6 +36,15 @@ function clickSendMessage(){
 }
 
 </script>
+
+<c:if test="${checked != 'Yes' }">
+	<jsp:forward page="login.html" />
+</c:if>
+
+
+<sql:setDataSource var="con" driver="com.mysql.jdbc.GoogleDriver"
+	url="jdbc:google:mysql://sendsms-stjkms:us-central1:sendsms-stjkms-sql/stjkms"
+	user="root" password="Radhey@2910" scope="session"/>
 
 <body>
 	<div class="container">

@@ -11,6 +11,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.tagext.TryCatchFinally;
+
 import java.io.PrintWriter;
 
 /**
@@ -47,7 +49,9 @@ public class SessionFilter implements Filter {
 		PrintWriter out = hsres.getWriter();
 		
 		HttpSession session = hsreq.getSession(false);
-	
+		
+		if(hsreq.getServletPath().contains("processLogin"))
+			chain.doFilter(request, response);
 		
 		if(null == session)
 			{
