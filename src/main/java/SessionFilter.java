@@ -1,5 +1,4 @@
 
-
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -21,12 +20,12 @@ import java.io.PrintWriter;
 
 public class SessionFilter implements Filter {
 
-    /**
-     * Default constructor. 
-     */
-    public SessionFilter() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public SessionFilter() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Filter#destroy()
@@ -38,25 +37,31 @@ public class SessionFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
 
 		// pass the request along the filter chain
-		
+
 		HttpServletRequest hsreq = (HttpServletRequest) request;
 		HttpServletResponse hsres = (HttpServletResponse) response;
 		PrintWriter out = hsres.getWriter();
-		
+
 		HttpSession session = hsreq.getSession(false);
-		
-		if(hsreq.getServletPath().contains("processLogin"))
+
+		if (hsreq.getServletPath().contains("processLogin"))
 			chain.doFilter(request, response);
-		
-		if(null == session)
-			{
+
+		if (null == session) {
 			hsres.sendRedirect("/index.html");
-			}
+		}
+
+		if (hsreq.getServletPath().contains("logout")) {
+			session.invalidate();
+			hsres.sendRedirect("/index.html");
+		}
+
 		chain.doFilter(request, response);
 	}
 

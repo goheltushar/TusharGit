@@ -12,17 +12,18 @@
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 <link href="../../css/login.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>SendSMS-STJKMS processEditContact</title>
 </head>
-<c:if test="${checked != 'Yes' }">
-	<jsp:forward page="../../login/login.html" />
-</c:if>
+
+
+<sql:setDataSource var="con" driver="com.mysql.jdbc.GoogleDriver"
+	url="jdbc:google:mysql://sendsms-stjkms:us-central1:sendsms-stjkms-sql/stjkms"
+	user="root" password="Radhey@2910" />
 
 <c:catch var="catchException">
 	<sql:update dataSource="${con}"

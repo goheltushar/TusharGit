@@ -21,11 +21,12 @@
 <title>SendSMS-STJKMS processEditContact</title>
 </head>
 
-<c:if test="${checked != 'Yes' }">
-	<jsp:forward page="../../login/login.html" />
-</c:if>
 
-
+<sql:setDataSource var="con" driver="com.mysql.jdbc.GoogleDriver"
+	url="jdbc:google:mysql://sendsms-stjkms:us-central1:sendsms-stjkms-sql/stjkms"
+	user="root" password="Radhey@2910"/>
+	
+	
 <c:catch var="catchException">
 	<sql:update dataSource="${con}"
 		sql="update contacts set Name = ?,Adjective = ?, Surname = ?, Number = ? where id = ?">

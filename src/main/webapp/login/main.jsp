@@ -22,29 +22,22 @@
 </head>
 
 <script type="text/javascript">
+	function clickInsertContact() {
+		window.location.replace("../sms/contacts/insertContact.jsp");
+	}
 
-function clickInsertContact(){
-	window.location.replace("../sms/contacts/insertContact.jsp");
-}
+	function clickViewContacts() {
+		window.location.replace("../sms/contacts/viewContacts.jsp");
+	}
 
-function clickViewContacts(){
-	window.location.replace("../sms/contacts/viewContacts.jsp");
-}
-
-function clickSendMessage(){
-	window.location.replace("../sms/enterMessage.jsp");
-}
-
+	function clickSendMessage() {
+		window.location.replace("../sms/enterMessage.jsp");
+	}
+	
+	function clickLogout() {
+		window.location.replace("../login/logout.jsp");
+	}
 </script>
-
-<c:if test="${checked != 'Yes' }">
-	<jsp:forward page="login.html" />
-</c:if>
-
-
-<sql:setDataSource var="con" driver="com.mysql.jdbc.GoogleDriver"
-	url="jdbc:google:mysql://sendsms-stjkms:us-central1:sendsms-stjkms-sql/stjkms"
-	user="root" password="Radhey@2910" scope="session"/>
 
 <body>
 	<div class="container">
@@ -55,17 +48,23 @@ function clickSendMessage(){
 						<h5 class="card-title text-center">SendSMS - STJKMS</h5>
 
 						<button class="btn btn-lg btn-primary btn-block text-uppercase"
-							type="submit" onclick="clickInsertContact()">Insert Contact</button>
+							type="submit" onclick="clickInsertContact()">Insert
+							Contact</button>
 						<hr class="my-4">
-						
+
 						<button class="btn btn-lg btn-primary btn-block text-uppercase"
-							type="submit" onclick="clickViewContacts()">View Contacts</button>
+							type="submit" onclick="clickViewContacts()">View
+							Contacts</button>
 						<hr class="my-4">
 
 						<button class="btn btn-lg btn-primary btn-block text-uppercase"
 							type="submit" onclick="clickSendMessage()">Send Message</button>
 						<hr class="my-4">
 
+						<button class="btn btn-lg btn-danger btn-block text-uppercase"
+							type="submit" onclick="clickLogout()">Log Out</button>
+						<hr class="my-4">
+						
 					</div>
 				</div>
 			</div>
