@@ -27,9 +27,14 @@
 			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
 				<div class="card card-signin my-5">
 					<div class="card-body">
-						<h5 class="card-title text-center">Insert New Contact</h5>
+						<h5 class="card-title text-center">Edit Selected Contact</h5>
 						<form class="form-signin" name="insertContact" action="processEditContact.jsp"
 							method="post">
+							
+							<div class="form-label-group">
+								<input type="text" name="id" id="id"
+									class="form-control" value="${param.id}" readonly> <label for="id">ID :</label>
+							</div>
 							
 							<div class="form-label-group">
 								<input type="text" name="name" id="inputName"

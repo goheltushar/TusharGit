@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.io.*,java.util.StringTokenizer"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
 
 <!DOCTYPE html>
@@ -9,52 +9,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Process Message</title>
-<%
-	if (session.isNew()) {
-%>
-<script>
-	window.location.replace("../login/Login.jsp");
-</script>
-<%
-	}
-%>
+
 
 <%
 	String previousPage = request.getHeader("referer");
 	if (previousPage != null) {
-		InputStream is = new FileInputStream("sms/Contacts.txt");
-		BufferedReader br = new BufferedReader(new InputStreamReader(is));
-		String str = "";
-		StringTokenizer st = null;
-		String number = "";
-		String name = "";
-		String adj = "";
-		String inputMessage = request.getParameter("inputmessage");
-		String message = "";
-		int i = 0;
-		while ((str = br.readLine()) != null) {
-			i++;
-			if (i == 1)
-				continue;
-			st = new StringTokenizer(str, ",");
-			number = st.nextToken();
-			name = st.nextToken();
-			adj = st.nextToken();
-			message = "Radhey Radhey " + name + " " + adj + " " + inputMessage;
 %>
-<c:import url="http://bulkpush.mytoday.com/BulkSms/SingleMsgApi"
-	var="result">
-	<c:param name="feedid" value="364413" />
-	<c:param name="senderid" value="STJKMS" />
-	<c:param name="username" value="9869422666" />
-	<c:param name="password" value="rkt@1401" />
-	<c:param name="To" value="<%=number%>" />
-	<c:param name="Text" value="<%=message%>" />
-</c:import>
 
-<%
-	}
-%>
+<sql:setDataSource var="con" driver="com.mysql.jdbc.GoogleDriver"
+	url="jdbc:google:mysql://sendsms-stjkms:us-central1:sendsms-stjkms-sql/stjkms"
+	user="root" password="Radhey@2910" />
+
+<sql:query var="result" dataSource="${con}"
+	sql="select * from contacts_test order by Name" />
+
+<c:forEach items="${result.rows}" var="row">
+	<c:import url="http://bulkpush.mytoday.com/BulkSms/SingleMsgApi"
+		var="result">
+		<c:param name="feedid" value="364413" />
+		<c:param name="senderid" value="STJKMS" />
+		<c:param name="username" value="9869422666" />
+		<c:param name="password" value="rkt@1401" />
+		<c:param name="To" value="${row.Number}" />
+		<c:param name="Text" value="Radhey Radhey ${row.Name} ${row.Adjective} ${param.inputmessage}" />
+	</c:import>
+</c:forEach>
+
 <jsp:forward page="successMessageSend.jsp" />
 <%
 	}

@@ -41,6 +41,7 @@
 								<th scope="col">#</th>
 								<th scope="col">Name</th>
 								<th scope="col">Mobile</th>
+								<th scope="col"></th>
 							</tr>
 						</thead>
 
@@ -49,16 +50,22 @@
 							<c:forEach items="${result.rows}" var="row">
 
 								<tr>
-									<th scope="row"><a href="editContact.jsp?name=${row.Name}&adjective=${row.Adjective}&surname=${row.Surname}&number=${row.Number}&id=${row.id}">${i}</a></th>
+									<th scope="row">${i}</th>
 									<td>${row.Name} ${row.Surname}</td>
 									<td>${row.Number}</td>
+									<td>
+									<a href="editContact.jsp?name=${row.Name}&adjective=${row.Adjective}&surname=${row.Surname}&number=${row.Number}&id=${row.id}">E</a>
+									<a href="deleteContact.jsp?id=${row.id}" onclick="return confirm('Are You Sure to delete this record?')"> D</a>
+									</td>
 								</tr>
 								<c:set var="i" value="${i + 1 }" />
 							</c:forEach>
-							
+
 							<tr>
-								<td colspan="3"> <button class="btn btn-lg btn-info btn-block text-uppercase"
-								onclick="window.location.replace('../../login/main.jsp')">Home</button> </td>
+								<td colspan="3">
+									<button class="btn btn-lg btn-info btn-block text-uppercase"
+										onclick="window.location.replace('../../login/main.jsp')">Home</button>
+								</td>
 							</tr>
 						</tbody>
 					</table>

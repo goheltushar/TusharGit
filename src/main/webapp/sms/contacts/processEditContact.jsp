@@ -18,7 +18,7 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 <link href="../../css/login.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>SendSMS-STJKMS processInsertContact</title>
+<title>SendSMS-STJKMS processEditContact</title>
 </head>
 
 <sql:setDataSource var="con" driver="com.mysql.jdbc.GoogleDriver"

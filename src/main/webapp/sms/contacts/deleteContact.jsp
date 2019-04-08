@@ -18,23 +18,33 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 <link href="../../css/login.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>SendSMS-STJKMS processInsertContact</title>
+<title>SendSMS-STJKMS processEditContact</title>
 </head>
 
 <sql:setDataSource var="con" driver="com.mysql.jdbc.GoogleDriver"
 	url="jdbc:google:mysql://sendsms-stjkms:us-central1:sendsms-stjkms-sql/stjkms"
 	user="root" password="Radhey@2910" />
 
-<sql:update dataSource="${con}"
-	sql="insert into contacts(Name,Adjective,Surname,Number) values(?,?,?,?)">
-	
-	<sql:param value="${param.name}" />
-	<sql:param value="${param.adjective}" />
-	<sql:param value="${param.surname}" />
-	<sql:param value="${param.number}" />
-</sql:update>
+
+<c:catch var="catchException">
+	<sql:update dataSource="${con}"
+		sql="delete from contacts where id = ?">
+		<sql:param value="${param.id}" />
+	</sql:update>
+</c:catch>
+
+<c:if test="${catchException != null}">
+	<p>
+		The exception is : ${catchException} <br /> There is an exception:
+		${catchException.message}
+	</p>
+</c:if>
+
+<c:if test="${catchException == null}">
+	<p>Record Deleted Successfully.....</p>
+</c:if>
 
 
-Record Inserted Successfully.....
+
 
 </html>

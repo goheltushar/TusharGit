@@ -140,15 +140,7 @@
 
 <body>
 
-	<%
-		if (session.isNew()) {
-	%>
-	<script>
-		window.location.replace("../login/Login.jsp");
-	</script>
-	<%
-		}
-	%>
+	
 
 
 	<div class="container">

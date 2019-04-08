@@ -20,15 +20,8 @@
 <link href="../css/login.css" rel="stylesheet">
 
 <%
-	if (session.isNew()) {
+session = request.getSession(true);
 %>
-<script>
-	window.location.replace("../login/Login.jsp");
-</script>
-<%
-	}
-%>
-
 
 <title>processLogin</title>
 </head>

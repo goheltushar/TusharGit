@@ -9,6 +9,10 @@
 </head>
 <body>
 
-	<jsp:forward page="Login.jsp" />
+<%
+session.invalidate();
+session = null;
+%>
+<jsp:forward page="Login.html" />
 </body>
 </html>

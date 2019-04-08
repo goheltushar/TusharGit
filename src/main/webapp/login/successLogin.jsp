@@ -30,15 +30,7 @@
 
 </head>
 <body>
-	<%
-		if (session.isNew()) {
-	%>
-	<script>
-		window.location.replace("../login/Login.jsp");
-	</script>
-	<%
-		}
-	%>
+
 	<div class="alert alert-success" role="alert">
 		<button type="button" class="close" data-dismiss="alert"
 			aria-label="Close">
