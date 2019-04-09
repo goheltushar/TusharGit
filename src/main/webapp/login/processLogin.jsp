@@ -31,7 +31,7 @@
 
 	<c:if
 		test="${param.email == 'goheltushar1401@gmail.com' && param.password == 'stjkms' }">
-		<c:set var="checked" value="Yes" scope="session" /> 
+		
 		<jsp:forward page="successLogin.jsp" />
 	</c:if>
 

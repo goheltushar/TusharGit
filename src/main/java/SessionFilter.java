@@ -40,7 +40,7 @@ public class SessionFilter implements Filter {
 		HttpServletRequest hsreq = (HttpServletRequest) request;
 		HttpServletResponse hsres = (HttpServletResponse) response;
 		PrintWriter out = hsres.getWriter();
-		try {
+		
 			// TODO Auto-generated method stub
 
 			// place your code here
@@ -48,17 +48,16 @@ public class SessionFilter implements Filter {
 			// pass the request along the filter chain
 
 			HttpSession session = hsreq.getSession(false);
+			
+			if (hsreq.getServletPath().contains("processLogin"))
+				chain.doFilter(request, response);
 
 			if (null == session) {
 				hsres.sendRedirect("/login/login.html");
 			}
 
-			if (hsreq.getServletPath().contains("processLogin"))
-				chain.doFilter(request, response);
 			
-		} catch (Exception e) {
-			hsres.sendRedirect("/login/login.html");
-		}
+	
 	}
 
 	/**

@@ -61,12 +61,7 @@
 								<c:set var="i" value="${i + 1 }" />
 							</c:forEach>
 
-							<tr>
-								<td colspan="3">
-									<button class="btn btn-lg btn-info btn-block text-uppercase"
-										onclick="window.location.replace('../../login/main.html')">Home</button>
-								</td>
-							</tr>
+							
 						</tbody>
 					</table>
 				</div>

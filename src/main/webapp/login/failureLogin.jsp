@@ -24,7 +24,7 @@
 	};
 
 	function loadAfterTime() {
-		window.location.replace("Login.html");
+		window.location.replace("login.html");
 	}
 </script>
 
