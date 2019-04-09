@@ -24,7 +24,7 @@
 	};
 
 	function loadAfterTime() {
-		window.location.replace("../login/main.jsp");
+		window.location.replace("../login/main.html");
 	}
 </script>
 

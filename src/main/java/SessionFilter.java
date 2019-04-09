@@ -6,13 +6,11 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.tagext.TryCatchFinally;
-
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 
 /**
  * Servlet Filter implementation class SessionFilter
@@ -39,30 +37,28 @@ public class SessionFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
-
-		// pass the request along the filter chain
-
 		HttpServletRequest hsreq = (HttpServletRequest) request;
 		HttpServletResponse hsres = (HttpServletResponse) response;
 		PrintWriter out = hsres.getWriter();
+		try {
+			// TODO Auto-generated method stub
 
-		HttpSession session = hsreq.getSession(false);
+			// place your code here
 
-		if (hsreq.getServletPath().contains("processLogin"))
-			chain.doFilter(request, response);
+			// pass the request along the filter chain
 
-		if (null == session) {
-			hsres.sendRedirect("/index.html");
+			HttpSession session = hsreq.getSession(false);
+
+			if (null == session) {
+				hsres.sendRedirect("/login/login.html");
+			}
+
+			if (hsreq.getServletPath().contains("processLogin"))
+				chain.doFilter(request, response);
+			
+		} catch (Exception e) {
+			hsres.sendRedirect("/login/login.html");
 		}
-
-		if (hsreq.getServletPath().contains("logout")) {
-			session.invalidate();
-			hsres.sendRedirect("/index.html");
-		}
-
-		chain.doFilter(request, response);
 	}
 
 	/**
