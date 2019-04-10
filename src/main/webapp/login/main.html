@@ -30,6 +30,10 @@
 		window.location.replace("../sms/enterMessage.html");
 	}
 	
+	function clickViewStatus() {
+		window.location.replace("../sms/reports/checkReport.jsp");
+	}
+	
 	
 </script>
 
@@ -53,6 +57,10 @@
 
 						<button class="btn btn-lg btn-primary btn-block text-uppercase"
 							type="submit" onclick="clickSendMessage()">Send Message</button>
+						<hr class="my-4">
+						
+						<button class="btn btn-lg btn-primary btn-block text-uppercase"
+							type="submit" onclick="clickViewStatus()">View Status</button>
 						<hr class="my-4">
 
 						<a class="btn btn-info" href="logout.jsp" role="button">LogOut</a>

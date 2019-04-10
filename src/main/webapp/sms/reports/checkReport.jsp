@@ -1,7 +1,8 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.StringTokenizer"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="java.net.*,java.io.*,java.util.zip.*,java.util.Enumeration"%>
+	import="java.net.*,java.io.*,java.util.zip.*,java.util.Enumeration,java.sql.*"%>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -56,17 +57,14 @@
 							value="${fn:substringAfter(result_dtxnid,'<RESULT>')}" />
 						<c:set var="dtxnid"
 							value="${fn:substringBefore(result_dtxnid,'</RESULT>')}" />
-						<c:out value="${dtxnid }" />
-
+						<c:out value="${dtxnid}" />
 						<%
+						//out.println(request.getLo);
 							String txnid = (String) pageContext.getAttribute("dtxnid");
 							int count = 1;
 							if (txnid.length() > 2) {
 								String report_status = "FETCHING";
 								while (report_status.equals("FETCHING")) {
-									if (count++ > 50)
-										break;
-									out.println("<br>" + count + " " + report_status);
 						%>
 						<c:import url="http://stats.mytoday.com/dlr_api"
 							var="result_status">
@@ -78,6 +76,7 @@
 							value="${fn:substringAfter(result_status,'<RESULT>')}" />
 						<c:set var="status"
 							value="${fn:substringBefore(result_status,'</RESULT>')}" />
+						<c:out value="${status}" />
 
 						<%
 							report_status = (String) pageContext.getAttribute("status");
@@ -91,13 +90,11 @@
 							<c:param name="ack" value="1" />
 						</c:import>
 
-						<c:out value="${result_file}" />
 
 						<c:set var="result_file"
 							value="${fn:substringAfter(result_file,'?')}" />
 						<c:set var="file" value="${fn:substringBefore(result_file,'&')}" />
-						<c:out value="${file}" />
-
+						<c:out value="${file} Hello" />
 						<%
 							}
 							}
@@ -105,6 +102,14 @@
 
 						<%
 							try {
+
+								Class.forName("com.mysql.jdbc.GoogleDriver");
+								Connection con = DriverManager.getConnection(
+										"jdbc:google:mysql://sendsms-stjkms:us-central1:sendsms-stjkms-sql/stjkms", "root",
+										"Radhey@2910");
+								PreparedStatement psmt = con.prepareStatement("select * from contacts where Number = ?");
+								ResultSet rs = null;
+
 								URL url = new URL("http://stats.mytoday.com/estatsbin/dlr_download?"
 										+ (String) pageContext.getAttribute("file") + "&feedid=364413");
 								InputStream in = new BufferedInputStream(url.openStream(), 1024);
@@ -132,41 +137,50 @@
 								StringTokenizer st = null;
 								StringBuffer sb = null;
 								String token = "";
+
+								ArrayList remaining = new ArrayList();
+								ArrayList remaining_element = null;
+
 								while ((str = br.readLine()) != null) {
 									if (i++ == 1)
 										continue;
 									if (str.contains("Delivered"))
 										continue;
-
 									st = new StringTokenizer(str, ",");
-
 									j = 0;
+									remaining_element = new ArrayList();
 									while (st.hasMoreTokens()) {
 										j++;
 										token = st.nextToken();
-										if (j == 2 || j == 3)
-											out.print(token + " " + j + "<br>" + (count));
-
+										if (j == 2 || j == 3) {
+											token = token.substring(token.indexOf('"') + 1, token.lastIndexOf('"'));
+											if (j == 2) {
+												token = token.substring(2);
+												remaining_element.add(token);
+												psmt.setInt(1, Integer.parseInt(token));
+												rs = psmt.executeQuery();
+												if (rs.next())
+													remaining_element.add(rs.getString("Name") + " " + rs.getString("Surname"));
+												else
+													remaining_element.add("Unknown Number");
+												rs.close();
+											} else {
+												remaining_element.add(token);
+											}
+										}
 									}
+									remaining.add(remaining_element);
 									count++;
 									out.print("<br> <br>");
-
 								}
 								br.close();
 
-								/*URL url = new URL(
-										"http://stats.mytoday.com/estatsbin/dlr_download?file=/STATS/API_FILE/20190410/EB1woiOKxk9H9waL8gp_1-1.csv.zip&feedid=364413");
-								//URL url = new URL("http://stats.mytoday.com/estatsbin/dlr_download?"
-								//				+ (String) pageContext.getAttribute("file") + "&feedid=364413");
-								URLConnection uc = url.openConnection();
-								InputStream in = uc.getInputStream();*/
-								//FileOutputStream fout = new FileOutputStream(new File("tmp.zip"));
-								//int ch;
-								/* while((ch=in.read()) != -1){
-									out.println(ch);
-									fout.write(ch);
+								ArrayList temp = new ArrayList();
+								for (int k = 0; k < remaining.size(); k++) {
+									temp = (ArrayList) remaining.get(k);
+									out.print(temp.get(0) + " " + temp.get(1) + " " + temp.get(2));
 								}
-								fout.close();*/
+
 							} catch (Exception e) {
 								out.println(e.toString());
 							}
