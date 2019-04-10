@@ -1,8 +1,5 @@
-<%@page import="java.util.StringTokenizer"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"
-	import="java.net.*,java.io.*,java.util.zip.*,java.util.Enumeration"%>
-
+	pageEncoding="UTF-8" import="java.net.*,java.io.*"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
@@ -25,16 +22,7 @@
 <meta charset="UTF-8">
 
 
-<%!void copyInputStream(InputStream in, OutputStream out) throws IOException {
-		byte[] buffer = new byte[1024];
-		int len = in.read(buffer);
-		while (len >= 0) {
-			out.write(buffer, 0, len);
-			len = in.read(buffer);
-		}
-		in.close();
-		out.close();
-	}%>
+
 
 
 <title>SendSMS-STJKMS checkReport</title>
@@ -47,6 +35,9 @@
 				<div class="card card-signin my-5">
 					<div class="card-body">
 						<h5 class="card-title text-center">Enter Message</h5>
+
+
+
 
 						<c:import url="http://stats.mytoday.com/dlr_api"
 							var="result_dtxnid">
@@ -100,75 +91,6 @@
 
 						<%
 							}
-							}
-						%>
-
-						<%
-							try {
-								URL url = new URL("http://stats.mytoday.com/estatsbin/dlr_download?"
-										+ (String) pageContext.getAttribute("file") + "&feedid=364413");
-								InputStream in = new BufferedInputStream(url.openStream(), 1024);
-								// make sure we get the actual file
-								File zip = File.createTempFile("arc", ".zip");
-								OutputStream fout = new BufferedOutputStream(new FileOutputStream(zip));
-
-								copyInputStream(in, fout);
-
-								ZipFile zipFile = new ZipFile(zip);
-								File file = null;
-								for (Enumeration entries = zipFile.entries(); entries.hasMoreElements();) {
-									ZipEntry entry = (ZipEntry) entries.nextElement();
-									file = new File(entry.getName());
-									copyInputStream(zipFile.getInputStream(entry),
-											new BufferedOutputStream(new FileOutputStream(file)));
-								}
-								zipFile.close();
-
-								BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-								String str = "";
-								int i = 1;
-								int j = 1;
-								count = 1;
-								StringTokenizer st = null;
-								StringBuffer sb = null;
-								String token = "";
-								while ((str = br.readLine()) != null) {
-									if (i++ == 1)
-										continue;
-									if (str.contains("Delivered"))
-										continue;
-
-									st = new StringTokenizer(str, ",");
-
-									j = 0;
-									while (st.hasMoreTokens()) {
-										j++;
-										token = st.nextToken();
-										if (j == 2 || j == 3)
-											out.print(token + " " + j + "<br>" + (count));
-
-									}
-									count++;
-									out.print("<br> <br>");
-
-								}
-								br.close();
-
-								/*URL url = new URL(
-										"http://stats.mytoday.com/estatsbin/dlr_download?file=/STATS/API_FILE/20190410/EB1woiOKxk9H9waL8gp_1-1.csv.zip&feedid=364413");
-								//URL url = new URL("http://stats.mytoday.com/estatsbin/dlr_download?"
-								//				+ (String) pageContext.getAttribute("file") + "&feedid=364413");
-								URLConnection uc = url.openConnection();
-								InputStream in = uc.getInputStream();*/
-								//FileOutputStream fout = new FileOutputStream(new File("tmp.zip"));
-								//int ch;
-								/* while((ch=in.read()) != -1){
-									out.println(ch);
-									fout.write(ch);
-								}
-								fout.close();*/
-							} catch (Exception e) {
-								out.println(e.toString());
 							}
 						%>
 
