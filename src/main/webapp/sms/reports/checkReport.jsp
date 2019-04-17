@@ -103,10 +103,10 @@
 						<%
 							try {
 
-								Class.forName("com.mysql.jdbc.GoogleDriver");
+								Class.forName("com.mysql.jdbc.Driver");
 								Connection con = DriverManager.getConnection(
-										"jdbc:google:mysql://sendsms-stjkms:us-central1:sendsms-stjkms-sql/stjkms", "root",
-										"Radhey@2910");
+										"jdbc:mysql://remotemysql.com:3306/2HILqD9i2G", "2HILqD9i2G",
+										"6I5l8Opvxa");
 								PreparedStatement psmt = con.prepareStatement("select * from contacts where Number = ?");
 								ResultSet rs = null;
 

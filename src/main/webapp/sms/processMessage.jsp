@@ -16,9 +16,9 @@
 	if (previousPage != null) {
 %>
 
-<sql:setDataSource var="con" driver="com.mysql.jdbc.GoogleDriver"
-	url="jdbc:google:mysql://sendsms-stjkms:us-central1:sendsms-stjkms-sql/stjkms"
-	user="root" password="Radhey@2910" />
+<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver"
+	url="jdbc:mysql://remotemysql.com:3306/2HILqD9i2G"
+	user="2HILqD9i2G" password="6I5l8Opvxa" />
 
 <sql:query var="result" dataSource="${con}"
 	sql="select * from contacts order by Name" />

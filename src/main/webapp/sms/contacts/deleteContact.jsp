@@ -21,10 +21,11 @@
 </head>
 
 
-<sql:setDataSource var="con" driver="com.mysql.jdbc.GoogleDriver"
-	url="jdbc:google:mysql://sendsms-stjkms:us-central1:sendsms-stjkms-sql/stjkms"
-	user="root" password="Radhey@2910" />
-
+<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver"
+	url="jdbc:mysql://remotemysql.com:3306/2HILqD9i2G"
+	user="2HILqD9i2G" password="6I5l8Opvxa" />
+	
+	
 <c:catch var="catchException">
 	<sql:update dataSource="${con}"
 		sql="delete from contacts where id = ?">
